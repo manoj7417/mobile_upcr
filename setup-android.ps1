@@ -1,32 +1,32 @@
 # Android SDK Setup Script for Windows
 # Run this script as Administrator
 
-Write-Host "🔧 Setting up Android SDK for UPCR Mobile App..." -ForegroundColor Green
+Write-Host "Setting up Android SDK for UPCR Mobile App..." -ForegroundColor Green
 
 # Check if Java is installed
-Write-Host "🔍 Checking Java installation..." -ForegroundColor Yellow
+Write-Host "Checking Java installation..." -ForegroundColor Yellow
 try {
     $javaVersion = java -version 2>&1
-    Write-Host "✅ Java is installed: $($javaVersion[0])" -ForegroundColor Green
+    Write-Host "Java is installed: $($javaVersion[0])" -ForegroundColor Green
 } catch {
-    Write-Host "❌ Java not found. Please install JDK 17+ first." -ForegroundColor Red
+    Write-Host "Java not found. Please install JDK 17+ first." -ForegroundColor Red
     Write-Host "Download from: https://adoptium.net/" -ForegroundColor Cyan
     exit 1
 }
 
 # Create Android SDK directory
 $androidSdkPath = "C:\android-sdk"
-Write-Host "📁 Creating Android SDK directory at $androidSdkPath..." -ForegroundColor Yellow
+Write-Host "Creating Android SDK directory at $androidSdkPath..." -ForegroundColor Yellow
 
 if (!(Test-Path $androidSdkPath)) {
     New-Item -ItemType Directory -Force -Path $androidSdkPath
-    Write-Host "✅ Created $androidSdkPath" -ForegroundColor Green
+    Write-Host "Created $androidSdkPath" -ForegroundColor Green
 } else {
-    Write-Host "✅ $androidSdkPath already exists" -ForegroundColor Green
+    Write-Host "$androidSdkPath already exists" -ForegroundColor Green
 }
 
 # Set environment variables
-Write-Host "🔧 Setting environment variables..." -ForegroundColor Yellow
+Write-Host "Setting environment variables..." -ForegroundColor Yellow
 [Environment]::SetEnvironmentVariable("ANDROID_HOME", $androidSdkPath, "User")
 [Environment]::SetEnvironmentVariable("ANDROID_SDK_ROOT", $androidSdkPath, "User")
 
@@ -44,14 +44,14 @@ foreach ($item in $newPathItems) {
 }
 
 [Environment]::SetEnvironmentVariable("PATH", $currentPath, "User")
-Write-Host "✅ Environment variables set" -ForegroundColor Green
+Write-Host "Environment variables set" -ForegroundColor Green
 
 # Download command line tools
 $cmdlineToolsPath = "$androidSdkPath\cmdline-tools"
 $latestPath = "$cmdlineToolsPath\latest"
 
 if (!(Test-Path $latestPath)) {
-    Write-Host "📥 Android Command Line Tools need to be downloaded manually..." -ForegroundColor Yellow
+    Write-Host "Android Command Line Tools need to be downloaded manually..." -ForegroundColor Yellow
     Write-Host "1. Go to: https://developer.android.com/studio#command-tools" -ForegroundColor Cyan
     Write-Host "2. Download 'commandlinetools-win-*_latest.zip'" -ForegroundColor Cyan
     Write-Host "3. Extract to: $latestPath" -ForegroundColor Cyan
@@ -64,33 +64,33 @@ if (!(Test-Path $latestPath)) {
 }
 
 # Check if sdkmanager is available
-Write-Host "🔍 Checking if SDK Manager is available..." -ForegroundColor Yellow
+Write-Host "Checking if SDK Manager is available..." -ForegroundColor Yellow
 $env:ANDROID_HOME = $androidSdkPath
 $env:PATH = "$env:PATH;$androidSdkPath\cmdline-tools\latest\bin"
 
 try {
     $sdkmanagerPath = "$latestPath\bin\sdkmanager.bat"
     if (Test-Path $sdkmanagerPath) {
-        Write-Host "✅ SDK Manager found" -ForegroundColor Green
+        Write-Host "SDK Manager found" -ForegroundColor Green
         
         # Install required SDK components
-        Write-Host "📦 Installing Android SDK components..." -ForegroundColor Yellow
-        & $sdkmanagerPath "platform-tools" "platforms;android-33" "build-tools;33.0.2"
+        Write-Host "Installing Android SDK components..." -ForegroundColor Yellow
+        & "$sdkmanagerPath" "platform-tools" "platforms;android-33" "build-tools;33.0.2"
         
-        Write-Host "📜 Accepting SDK licenses..." -ForegroundColor Yellow
-        Write-Host "y" | & $sdkmanagerPath --licenses
+        Write-Host "Accepting SDK licenses..." -ForegroundColor Yellow
+        "y" | & "$sdkmanagerPath" --licenses
         
-        Write-Host "✅ Android SDK setup complete!" -ForegroundColor Green
+        Write-Host "Android SDK setup complete!" -ForegroundColor Green
     } else {
-        Write-Host "❌ SDK Manager not found at expected location" -ForegroundColor Red
+        Write-Host "SDK Manager not found at expected location" -ForegroundColor Red
         Write-Host "Please ensure command line tools are extracted to: $latestPath" -ForegroundColor Cyan
     }
 } catch {
-    Write-Host "❌ Error running SDK Manager: $_" -ForegroundColor Red
+    Write-Host "Error running SDK Manager: $_" -ForegroundColor Red
 }
 
-Write-Host "`n🎉 Setup complete! You can now build Android APKs." -ForegroundColor Green
+Write-Host "`nSetup complete! You can now build Android APKs." -ForegroundColor Green
 Write-Host "Run 'npm run mobile:build' to build your mobile app." -ForegroundColor Cyan
 Write-Host "Then 'cd android && gradlew assembleDebug' to create APK." -ForegroundColor Cyan
 
-Write-Host "`n📝 Note: You may need to restart your terminal for PATH changes to take effect." -ForegroundColor Yellow 
+Write-Host "`nNote: You may need to restart your terminal for PATH changes to take effect." -ForegroundColor Yellow 

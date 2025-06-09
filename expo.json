@@ -1,0 +1,29 @@
+{
+  "name": "UPCR Mobile",
+  "slug": "mobileupcr",
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "icon": "./public/upcr-logo.png",
+  "userInterfaceStyle": "light",
+  "splash": {
+    "image": "./public/upcr-logo.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "assetBundlePatterns": [
+    "**/*"
+  ],
+  "platforms": ["android"],
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./public/upcr-logo.png",
+      "backgroundColor": "#FFFFFF"
+    },
+    "package": "com.example.app"
+  },
+  "extra": {
+    "eas": {
+      "projectId": "c4480372-0940-4938-a35b-131b145f3666"
+    }
+  }
+} 

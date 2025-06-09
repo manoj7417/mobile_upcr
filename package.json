@@ -17,7 +17,10 @@
     "mobile:android": "npx cap open android",
     "mobile:add-android": "npx cap add android",
     "mobile:run-android": "npx cap run android",
-    "mobile:build-android": "npx cap build android"
+    "mobile:build-android": "npx cap build android",
+    "eas:build": "eas build --platform android --profile development",
+    "eas:build:preview": "eas build --platform android --profile preview",
+    "eas:build:production": "eas build --platform android --profile production"
   },
   "keywords": [],
   "dependencies": {
@@ -57,6 +60,7 @@
     "vinxi": "^0.5.3"
   },
   "devDependencies": {
+    "@expo/config-plugins": "^10.0.2",
     "@types/node": "^22.13.15",
     "@types/pg": "^8.11.11",
     "@types/react": "^19.0.12",

@@ -1,0 +1,32 @@
+{
+  "cli": {
+    "version": ">= 16.8.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleDebug"
+      }
+    },
+    "preview": {
+      "distribution": "internal",
+      "prebuildCommand": "node build-hook.js",
+      "android": {
+        "buildType": "apk",
+        "gradleCommand": ":app:assembleRelease"
+      }
+    },
+          "production": {
+        "prebuildCommand": "node build-hook.js",
+        "android": {
+          "buildType": "app-bundle"
+        }
+      }
+  },
+  "submit": {
+    "production": {}
+  }
+} 

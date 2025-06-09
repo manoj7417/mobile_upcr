@@ -1,0 +1,238 @@
+{
+  "_AnnouncementTicker.js": {
+    "file": "assets/AnnouncementTicker.js",
+    "name": "AnnouncementTicker",
+    "imports": [
+      "_client2.js"
+    ]
+  },
+  "_ComingSoon.js": {
+    "file": "assets/ComingSoon.js",
+    "name": "ComingSoon",
+    "imports": [
+      "_client2.js"
+    ]
+  },
+  "_DealRoom.js": {
+    "file": "assets/DealRoom.js",
+    "name": "DealRoom",
+    "imports": [
+      "_client2.js"
+    ],
+    "dynamicImports": [
+      "_browser.js"
+    ]
+  },
+  "_TenderForm.js": {
+    "file": "assets/TenderForm.js",
+    "name": "TenderForm",
+    "imports": [
+      "_client2.js",
+      "___vite-browser-external.js"
+    ]
+  },
+  "___vite-browser-external.js": {
+    "file": "assets/__vite-browser-external.js",
+    "name": "__vite-browser-external",
+    "isDynamicEntry": true
+  },
+  "_browser.js": {
+    "file": "assets/browser.js",
+    "name": "browser",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js"
+    ]
+  },
+  "_client.css": {
+    "file": "assets/client.css",
+    "src": "_client.css"
+  },
+  "_client2.js": {
+    "file": "assets/client2.js",
+    "name": "client",
+    "dynamicImports": [
+      "___vite-browser-external.js",
+      "___vite-browser-external.js",
+      "___vite-browser-external.js",
+      "___vite-browser-external.js",
+      "app/routes/time-management.tsx?tsr-split=component",
+      "app/routes/test-tender.tsx?tsr-split=component",
+      "app/routes/tenders.tsx?tsr-split=component",
+      "app/routes/suppliers.tsx?tsr-split=component",
+      "app/routes/solutions.tsx?tsr-split=component",
+      "app/routes/signup.tsx?tsr-split=component",
+      "app/routes/resource-compass.tsx?tsr-split=component",
+      "app/routes/projectandconstruction.tsx?tsr-split=component",
+      "app/routes/login.tsx?tsr-split=component",
+      "app/routes/deals.tsx?tsr-split=component",
+      "app/routes/contact.tsx?tsr-split=component",
+      "app/routes/categories.tsx?tsr-split=component",
+      "app/routes/index.tsx?tsr-split=component",
+      "app/routes/seller.$sellerId.tsx?tsr-split=component",
+      "app/routes/product.$productId.tsx?tsr-split=component"
+    ],
+    "css": [
+      "assets/client.css"
+    ]
+  },
+  "app/routes/categories.tsx?tsr-split=component": {
+    "file": "assets/categories.js",
+    "name": "categories",
+    "src": "app/routes/categories.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js",
+      "_ComingSoon.js"
+    ]
+  },
+  "app/routes/contact.tsx?tsr-split=component": {
+    "file": "assets/contact.js",
+    "name": "contact",
+    "src": "app/routes/contact.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js",
+      "_ComingSoon.js"
+    ]
+  },
+  "app/routes/deals.tsx?tsr-split=component": {
+    "file": "assets/deals.js",
+    "name": "deals",
+    "src": "app/routes/deals.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js",
+      "_DealRoom.js"
+    ]
+  },
+  "app/routes/index.tsx?tsr-split=component": {
+    "file": "assets/index.js",
+    "name": "index",
+    "src": "app/routes/index.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js",
+      "_AnnouncementTicker.js",
+      "_DealRoom.js",
+      "_TenderForm.js",
+      "___vite-browser-external.js"
+    ]
+  },
+  "app/routes/login.tsx?tsr-split=component": {
+    "file": "assets/login.js",
+    "name": "login",
+    "src": "app/routes/login.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js"
+    ]
+  },
+  "app/routes/product.$productId.tsx?tsr-split=component": {
+    "file": "assets/product._productId.js",
+    "name": "product._productId",
+    "src": "app/routes/product.$productId.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js"
+    ]
+  },
+  "app/routes/projectandconstruction.tsx?tsr-split=component": {
+    "file": "assets/projectandconstruction.js",
+    "name": "projectandconstruction",
+    "src": "app/routes/projectandconstruction.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js"
+    ]
+  },
+  "app/routes/resource-compass.tsx?tsr-split=component": {
+    "file": "assets/resource-compass.js",
+    "name": "resource-compass",
+    "src": "app/routes/resource-compass.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js",
+      "_AnnouncementTicker.js",
+      "_DealRoom.js"
+    ]
+  },
+  "app/routes/seller.$sellerId.tsx?tsr-split=component": {
+    "file": "assets/seller._sellerId.js",
+    "name": "seller._sellerId",
+    "src": "app/routes/seller.$sellerId.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js"
+    ]
+  },
+  "app/routes/signup.tsx?tsr-split=component": {
+    "file": "assets/signup.js",
+    "name": "signup",
+    "src": "app/routes/signup.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js"
+    ]
+  },
+  "app/routes/solutions.tsx?tsr-split=component": {
+    "file": "assets/solutions.js",
+    "name": "solutions",
+    "src": "app/routes/solutions.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js",
+      "_ComingSoon.js"
+    ]
+  },
+  "app/routes/suppliers.tsx?tsr-split=component": {
+    "file": "assets/suppliers.js",
+    "name": "suppliers",
+    "src": "app/routes/suppliers.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js",
+      "_ComingSoon.js"
+    ]
+  },
+  "app/routes/tenders.tsx?tsr-split=component": {
+    "file": "assets/tenders.js",
+    "name": "tenders",
+    "src": "app/routes/tenders.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js",
+      "_TenderForm.js",
+      "___vite-browser-external.js"
+    ]
+  },
+  "app/routes/test-tender.tsx?tsr-split=component": {
+    "file": "assets/test-tender.js",
+    "name": "test-tender",
+    "src": "app/routes/test-tender.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js",
+      "_TenderForm.js",
+      "___vite-browser-external.js"
+    ]
+  },
+  "app/routes/time-management.tsx?tsr-split=component": {
+    "file": "assets/time-management.js",
+    "name": "time-management",
+    "src": "app/routes/time-management.tsx?tsr-split=component",
+    "isDynamicEntry": true,
+    "imports": [
+      "_client2.js"
+    ]
+  },
+  "virtual:$vinxi/handler/client": {
+    "file": "assets/client.js",
+    "name": "client",
+    "src": "virtual:$vinxi/handler/client",
+    "isEntry": true,
+    "imports": [
+      "_client2.js"
+    ]
+  }
+}

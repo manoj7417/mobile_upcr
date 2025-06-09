@@ -1,0 +1,1 @@
+import{j as o}from"./client2.js";import{C as e}from"./ComingSoon.js";const r=function(){return o.jsx(e,{title:"Categories Coming Soon",description:"We're organizing our extensive catalog of industrial categories to help you find exactly what you need. Check back soon!"})};export{r as component};

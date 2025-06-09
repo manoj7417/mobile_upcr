@@ -1,0 +1,1 @@
+import{j as t}from"./client2.js";import{C as e}from"./ComingSoon.js";const n=function(){return t.jsx(e,{title:"Supplier Directory Coming Soon",description:"Our verified supplier directory is being curated to ensure you connect with the best in the industry. Stay tuned for access to top-tier industrial suppliers."})};export{n as component};

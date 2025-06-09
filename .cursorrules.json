@@ -1,0 +1,129 @@
+{
+  "rules": {
+    "typescript": {
+      "compilerOptions": {
+        "jsx": "react-jsx",
+        "moduleResolution": "Bundler",
+        "module": "ESNext",
+        "target": "ES2022",
+        "skipLibCheck": true,
+        "strictNullChecks": true
+      },
+      "verbatimModuleSyntax": false
+    },
+    "projectStructure": {
+      "app": {
+        "routes": {
+          "__root.tsx": "Root layout and configuration",
+          "index.tsx": "Home page route"
+        },
+        "client.tsx": "Client-side entry",
+        "router.tsx": "Router configuration",
+        "routeTree.gen.ts": "Auto-generated route tree",
+        "ssr.tsx": "Server-side entry"
+      }
+    },
+    "fileNaming": {
+      "root": "__root.tsx",
+      "index": "index.tsx",
+      "client": "client.tsx",
+      "router": "router.tsx",
+      "ssr": "ssr.tsx"
+    },
+    "bestPractices": {
+      "router": [
+        "Configure with proper scroll restoration",
+        "Define proper type registration"
+      ],
+      "ssr": [
+        "Use createStartHandler for setup",
+        "Implement proper stream handling",
+        "Configure router manifest"
+      ],
+      "client": [
+        "Use proper hydration with StartClient",
+        "Reference Vinxi client types"
+      ],
+      "routes": [
+        "Implement head metadata in root",
+        "Use proper document structure",
+        "Implement proper outlet usage"
+      ],
+      "serverFunctions": [
+        "Use createServerFn for API endpoints",
+        "Implement proper method types",
+        "Add proper validation",
+        "Handle errors appropriately"
+      ]
+    },
+    "requiredComponents": {
+      "root": {
+        "components": ["RootComponent", "RootDocument"],
+        "imports": ["Outlet", "createRootRoute", "HeadContent", "Scripts"]
+      },
+      "client": {
+        "imports": ["hydrateRoot", "StartClient"]
+      },
+      "server": {
+        "imports": ["createStartHandler", "defaultStreamHandler"]
+      }
+    },
+    "development": {
+      "commands": {
+        "dev": "vinxi dev",
+        "build": "vinxi build",
+        "start": "vinxi start"
+      },
+      "guidelines": [
+        "Always generate route tree before running"
+      ]
+    },
+    "dependencies": {
+      "main": [
+        "@tanstack/react-start",
+        "@tanstack/react-router",
+        "vinxi",
+        "react",
+        "react-dom"
+      ],
+      "dev": [
+        "@vitejs/plugin-react",
+        "vite-tsconfig-paths",
+        "typescript",
+        "@types/react",
+        "@types/react-dom"
+      ]
+    },
+    "packageJson": {
+      "type": "module",
+      "scripts": {
+        "dev": "vinxi dev",
+        "build": "vinxi build",
+        "start": "vinxi start"
+      }
+    },
+    "drizzle": {
+      "config": {
+        "useDefineConfig": true,
+        "requiredFields": {
+          "dialect": "postgresql",
+          "schema": "./app/db/schema.ts",
+          "dbCredentials": {
+            "connectionString": "process.env.DATABASE_URL"
+          }
+        },
+        "migrations": {
+          "table": "__drizzle_migrations",
+          "schema": "public"
+        }
+      },
+      "bestPractices": [
+        "Use defineConfig for type safety",
+        "Store connection string in environment variables",
+        "Use relative paths for schema files",
+        "Implement proper migration tracking",
+        "Keep migrations in version control"
+      ]
+    }
+  }
+} 

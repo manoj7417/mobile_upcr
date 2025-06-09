@@ -1,0 +1,1 @@
+import{j as o}from"./client2.js";import{C as n}from"./ComingSoon.js";const s=function(){return o.jsx(n,{title:"Solutions Coming Soon",description:"Our comprehensive B2B solutions platform is under development. We're building powerful tools to streamline your business operations."})};export{s as component};

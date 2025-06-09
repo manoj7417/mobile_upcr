@@ -1,0 +1,1 @@
+import{j as o}from"./client2.js";import{C as t}from"./ComingSoon.js";const r=function(){return o.jsx(t,{title:"Contact Page Coming Soon",description:"We're setting up our support channels to better assist you. In the meantime, you can reach us through the Resource Compass platform."})};export{r as component};

@@ -1,0 +1,189 @@
+// TanStack Start + React + TypeScript .cursorrules
+
+// TypeScript Configuration Rules
+const typescriptConfig = {
+  compilerOptions: {
+    jsx: "react-jsx",
+    moduleResolution: "Bundler",
+    module: "ESNext",
+    target: "ES2022",
+    skipLibCheck: true,
+    strictNullChecks: true
+  },
+  // Avoid verbatimModuleSyntax as it can cause server bundle leaks
+  verbatimModuleSyntax: false
+};
+
+// Required Project Structure
+const projectStructure = `
+app/
+  ├── routes/
+  │   ├── __root.tsx       # Root layout and configuration
+  │   └── index.tsx        # Home page route
+  ├── client.tsx           # Client-side entry
+  ├── router.tsx           # Router configuration
+  ├── routeTree.gen.ts     # Auto-generated route tree
+  └── ssr.tsx             # Server-side entry
+`;
+
+// File Naming Conventions
+const fileNamingConventions = {
+  root: "__root.tsx",
+  index: "index.tsx",
+  client: "client.tsx",
+  router: "router.tsx",
+  ssr: "ssr.tsx"
+};
+
+// Best Practices
+const bestPractices = [
+  // Router Configuration
+  "Configure TanStack Router with proper scroll restoration",
+  "Define proper type registration for router",
+  
+  // Server-Side Rendering
+  "Use createStartHandler for SSR setup",
+  "Implement proper stream handling",
+  "Configure router manifest for SSR",
+  
+  // Client-Side
+  "Use proper hydration with StartClient",
+  "Reference Vinxi client types",
+  
+  // Route Structure
+  "Implement proper head metadata in root route",
+  "Use proper document structure with Scripts and HeadContent",
+  "Implement proper outlet usage for nested routes",
+  
+  // Server Functions
+  "Use createServerFn for API endpoints",
+  "Implement proper method types (GET, POST, etc)",
+  "Add proper validation for server functions",
+  "Handle server-side errors appropriately"
+];
+
+// Required Components
+const requiredComponents = {
+  root: {
+    components: ["RootComponent", "RootDocument"],
+    imports: ["Outlet", "createRootRoute", "HeadContent", "Scripts"]
+  },
+  client: {
+    imports: ["hydrateRoot", "StartClient"]
+  },
+  server: {
+    imports: ["createStartHandler", "defaultStreamHandler"]
+  }
+};
+
+// Development Guidelines
+const developmentGuidelines = [
+  "Run in dev mode with 'vinxi dev'",
+  "Build for production with 'vinxi build'",
+  "Start production server with 'vinxi start'",
+  "Always generate route tree before running"
+];
+
+// Package Dependencies
+const coreDependencies = {
+  main: [
+    "@tanstack/react-start",
+    "@tanstack/react-router",
+    "vinxi",
+    "react",
+    "react-dom"
+  ],
+  dev: [
+    "@vitejs/plugin-react",
+    "vite-tsconfig-paths",
+    "typescript",
+    "@types/react",
+    "@types/react-dom"
+  ]
+};
+
+// Script Configuration
+const requiredScripts = {
+  dev: "vinxi dev",
+  build: "vinxi build",
+  start: "vinxi start"
+};
+
+// Module Type
+const moduleType = "module"; // Required for package.json 
+
+// Drizzle Configuration Rules
+const drizzleConfig = {
+  // Always use defineConfig for type safety
+  useDefineConfig: true,
+  
+  // Required configuration
+  requiredFields: {
+    dialect: "postgresql",
+    schema: "./app/db/schema.ts",
+    dbCredentials: {
+      connectionString: "process.env.DATABASE_URL"
+    }
+  },
+  
+  // Migration settings
+  migrations: {
+    table: "__drizzle_migrations",
+    schema: "public"
+  },
+  
+  // Best practices
+  bestPractices: [
+    "Use defineConfig for type safety",
+    "Store connection string in environment variables",
+    "Use relative paths for schema files",
+    "Implement proper migration tracking",
+    "Keep migrations in version control"
+  ]
+};
+
+// Tailwind Configuration Rules
+const tailwindConfig = {
+  // Required dependencies
+  dependencies: {
+    dev: [
+      "tailwindcss",
+      "@tailwindcss/postcss",
+      "autoprefixer"
+    ]
+  },
+  
+  // Required configuration files
+  configFiles: {
+    "tailwind.config.js": {
+      content: ["./app/**/*.{js,jsx,ts,tsx}"],
+      theme: {
+        extend: {}
+      }
+    },
+    "postcss.config.js": {
+      plugins: {
+        "@tailwindcss/postcss": {},
+        "autoprefixer": {}
+      }
+    }
+  },
+  
+  // CSS structure
+  cssStructure: {
+    "app/styles/globals.css": [
+      "@tailwind base",
+      "@tailwind components",
+      "@tailwind utilities"
+    ]
+  },
+  
+  // Best practices
+  bestPractices: [
+    "Use semantic class names",
+    "Follow mobile-first approach",
+    "Utilize Tailwind's utility classes",
+    "Group related utilities with @apply when needed",
+    "Keep component styles modular"
+  ]
+}; 

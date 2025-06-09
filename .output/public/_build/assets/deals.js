@@ -1,0 +1,1 @@
+import{j as o}from"./client2.js";import{D as s}from"./DealRoom.js";const n=function(){return o.jsx("div",{className:"min-h-screen bg-gray-50 p-4",children:o.jsx("div",{className:"max-w-7xl mx-auto",children:o.jsx(s,{})})})};export{n as component};

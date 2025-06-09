@@ -1,0 +1,23 @@
+{
+  "name": "UPC Resources",
+  "short_name": "UPC",
+  "description": "Your one-stop platform for construction and business resources",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3b82f6",
+  "icons": [
+    {
+      "src": "/upcr-logo.png",
+      "sizes": "111x65",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/upcr-logo.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+} 

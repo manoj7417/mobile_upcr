@@ -1,0 +1,93 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
+        
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+        
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+      
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Build web application
+      run: npm run build
+      
+    - name: Create index.html for Capacitor
+      run: |
+        if [ ! -f ".output/public/index.html" ]; then
+          cat > .output/public/index.html << 'EOF'
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>UPCR Mobile</title>
+            <link rel="stylesheet" href="/_build/assets/client.css">
+        </head>
+        <body>
+            <div id="root">
+                <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+                    Loading...
+                </div>
+            </div>
+            <script type="module" src="/_build/assets/client.js"></script>
+        </body>
+        </html>
+        EOF
+        fi
+        
+    - name: Install Capacitor CLI
+      run: npm install -g @capacitor/cli
+      
+    - name: Add Android platform
+      run: npx cap add android || echo "Android platform already exists"
+      
+    - name: Sync Capacitor
+      run: npx cap sync android
+      
+    - name: Make gradlew executable
+      run: chmod +x android/gradlew
+      
+    - name: Build Android APK
+      run: |
+        cd android
+        ./gradlew assembleDebug --no-daemon --stacktrace
+        
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: upcr-mobile-debug
+        path: android/app/build/outputs/apk/debug/app-debug.apk
+        retention-days: 30
+        
+    - name: Upload build info
+      uses: actions/upload-artifact@v4
+      with:
+        name: build-info
+        path: |
+          android/app/build/outputs/apk/debug/
+          !android/app/build/outputs/apk/debug/*.apk 

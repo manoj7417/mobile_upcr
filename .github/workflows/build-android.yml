@@ -38,27 +38,38 @@ jobs:
       
     - name: Create index.html for Capacitor
       run: |
-        if [ ! -f ".output/public/index.html" ]; then
-          cat > .output/public/index.html << 'EOF'
+        # Ensure the output directory exists
+        mkdir -p .output/public
+        
+        # Create index.html file that Capacitor needs
+        cat > .output/public/index.html << 'EOF'
         <!DOCTYPE html>
         <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <meta name="apple-mobile-web-app-capable" content="yes">
+            <meta name="apple-mobile-web-app-status-bar-style" content="default">
             <title>UPCR Mobile</title>
             <link rel="stylesheet" href="/_build/assets/client.css">
         </head>
         <body>
             <div id="root">
-                <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-                    Loading...
+                <div style="display: flex; justify-content: center; align-items: center; height: 100vh; font-family: system-ui;">
+                    <div style="text-align: center;">
+                        <div style="margin-bottom: 20px; font-size: 24px;">UPCR Mobile</div>
+                        <div>Loading...</div>
+                    </div>
                 </div>
             </div>
             <script type="module" src="/_build/assets/client.js"></script>
         </body>
         </html>
         EOF
-        fi
+        
+        # Verify the file was created
+        ls -la .output/public/
+        echo "✅ index.html created successfully"
         
     - name: Install Capacitor CLI
       run: npm install -g @capacitor/cli
@@ -72,7 +83,7 @@ jobs:
     - name: Make gradlew executable
       run: chmod +x android/gradlew
       
-    - name: Build Android APK
+    - name: Build Android APK (Debug)
       run: |
         cd android
         ./gradlew assembleDebug --no-daemon --stacktrace
@@ -84,10 +95,12 @@ jobs:
         path: android/app/build/outputs/apk/debug/app-debug.apk
         retention-days: 30
         
-    - name: Upload build info
+    - name: Upload build logs
+      if: failure()
       uses: actions/upload-artifact@v4
       with:
-        name: build-info
+        name: build-logs
         path: |
-          android/app/build/outputs/apk/debug/
-          !android/app/build/outputs/apk/debug/*.apk 
+          android/app/build/reports/
+          android/app/build/outputs/logs/
+        retention-days: 7 

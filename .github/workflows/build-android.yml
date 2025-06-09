@@ -19,7 +19,14 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '20'
-        cache: 'npm'
+        
+    - name: Cache node modules
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
         
     - name: Setup Java JDK
       uses: actions/setup-java@v4
@@ -30,8 +37,11 @@ jobs:
     - name: Setup Android SDK
       uses: android-actions/setup-android@v3
       
-    - name: Install dependencies
-      run: npm ci
+    - name: Clean npm cache and install dependencies
+      run: |
+        npm cache clean --force
+        rm -rf node_modules package-lock.json
+        npm install
       
     - name: Build web application
       run: npm run build
@@ -67,40 +77,67 @@ jobs:
         </html>
         EOF
         
-        # Verify the file was created
+        # Verify the file was created and show directory contents
+        echo "📁 Contents of .output/public:"
         ls -la .output/public/
         echo "✅ index.html created successfully"
         
-    - name: Install Capacitor CLI
-      run: npm install -g @capacitor/cli
+    - name: Install Capacitor CLI globally
+      run: npm install -g @capacitor/cli@latest
+      
+    - name: Remove existing android directory
+      run: rm -rf android
       
     - name: Add Android platform
-      run: npx cap add android || echo "Android platform already exists"
+      run: npx cap add android
       
     - name: Sync Capacitor
       run: npx cap sync android
       
+    - name: Verify Android project structure
+      run: |
+        echo "📁 Android project structure:"
+        ls -la android/
+        echo "📱 App directory:"
+        ls -la android/app/
+        
     - name: Make gradlew executable
       run: chmod +x android/gradlew
       
+    - name: Clean Android build
+      run: |
+        cd android
+        ./gradlew clean --no-daemon
+        
     - name: Build Android APK (Debug)
       run: |
         cd android
-        ./gradlew assembleDebug --no-daemon --stacktrace
+        ./gradlew assembleDebug --no-daemon --stacktrace --info
+        
+    - name: Verify APK was created
+      run: |
+        echo "🔍 Looking for APK files:"
+        find android/ -name "*.apk" -type f
+        ls -la android/app/build/outputs/apk/debug/ || echo "❌ Debug APK directory not found"
         
     - name: Upload APK artifact
+      if: success()
       uses: actions/upload-artifact@v4
       with:
-        name: upcr-mobile-debug
+        name: upcr-mobile-debug-apk
         path: android/app/build/outputs/apk/debug/app-debug.apk
         retention-days: 30
         
-    - name: Upload build logs
+    - name: Upload full build output (for debugging)
       if: failure()
       uses: actions/upload-artifact@v4
       with:
-        name: build-logs
+        name: build-debug-files
         path: |
-          android/app/build/reports/
           android/app/build/outputs/logs/
+          android/app/build/reports/
+          android/build.gradle
+          android/app/build.gradle
+          capacitor.config.ts
+          package.json
         retention-days: 7 

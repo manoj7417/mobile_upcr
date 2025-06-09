@@ -1,4 +1,17 @@
-<!DOCTYPE html>
+import { writeFileSync, existsSync, mkdirSync } from 'fs';
+import { join } from 'path';
+
+const outputDir = '.output/public';
+const indexPath = join(outputDir, 'index.html');
+
+// Ensure the output directory exists
+if (!existsSync(outputDir)) {
+    mkdirSync(outputDir, { recursive: true });
+    console.log('📁 Created output directory:', outputDir);
+}
+
+// Create the index.html file for Capacitor
+const indexContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,4 +32,13 @@
     </div>
     <script type="module" src="/_build/assets/client.js"></script>
 </body>
-</html>
+</html>`;
+
+try {
+    writeFileSync(indexPath, indexContent, 'utf8');
+    console.log('✅ Successfully created index.html for Capacitor mobile app');
+    console.log('📍 Location:', indexPath);
+} catch (error) {
+    console.error('❌ Failed to create index.html:', error);
+    process.exit(1);
+} 

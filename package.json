@@ -13,7 +13,7 @@
     "db:migrate": "tsx app/db/migrate.ts",
     "db:studio": "drizzle-kit studio",
     "db:verify": "tsx app/db/verify-schema.ts",
-    "mobile:build": "cross-env MOBILE_BUILD=true vinxi build && npx cap sync",
+    "mobile:build": "cross-env MOBILE_BUILD=true vinxi build && node scripts/create-mobile-index.js && npx cap sync",
     "mobile:android": "npx cap open android",
     "mobile:add-android": "npx cap add android",
     "mobile:run-android": "npx cap run android",
